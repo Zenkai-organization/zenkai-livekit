@@ -1,0 +1,3 @@
+LIVEKIT_URL=wss://zenkai-6g8mqw70.livekit.cloud
+LIVEKIT_API_KEY=API8uxUgBocCXEo
+LIVEKIT_API_SECRET=GLzltuzGgfYGy6dxbWeRPvUwEzmhcuOmUnQMSHlisrM

@@ -1,0 +1,186 @@
+[2026-01-17 07:51:49] 🚀 Starting backend services...
+[2026-01-17 07:51:49] 📦 Starting Docker containers (Whisper, Kokoro)...
+time="2026-01-17T07:51:49Z" level=warning msg="No services to build"
+ Container live-kit-kokoro-1 Running 
+ Container live-kit-whisper-1 Running 
+[2026-01-17 07:51:49] ✅ Docker containers started successfully
+[2026-01-17 07:51:49] 🔍 Checking Docker container status...
+NAME                 IMAGE                                      COMMAND                  SERVICE   CREATED             STATUS              PORTS
+live-kit-kokoro-1    ghcr.io/remsky/kokoro-fastapi-cpu:latest   "./entrypoint.sh"        kokoro    About an hour ago   Up About a minute   0.0.0.0:8888->8880/tcp, [::]:8888->8880/tcp
+live-kit-whisper-1   fedirz/faster-whisper-server:latest-cpu    "uv run uvicorn --fa…"   whisper   About an hour ago   Up 4 minutes        0.0.0.0:8080->8000/tcp, [::]:8080->8000/tcp
+[2026-01-17 07:51:49] ⏳ Waiting for local AI services to initialize...
+[2026-01-17 07:51:54] 🧪 Testing Whisper endpoint...
+[2026-01-17 07:51:54] ✅ Whisper is responding
+[2026-01-17 07:51:54] 🧪 Testing Kokoro endpoint...
+[2026-01-17 07:51:54] ✅ Kokoro is responding
+[2026-01-17 07:51:54] 🤖 Starting LiveKit Python agent...
+[2026-01-17 07:51:54] 📂 Activating virtual environment...
+[2026-01-17 07:51:54] 🔧 Environment variables loaded from .env.local
+[2026-01-17 07:51:54] 🎯 Starting agent in development mode...
+    07:51:59.406 DEBUG  asyncio            Using         
+                                           selector:     
+                                           EpollSelect…  
+    07:51:59.411 DEV    livekit.agents     Watching      
+                                           /home/ubunt…  
+    07:52:02.555 DEBUG  asyncio            Using         
+                                           selector:     
+                                           EpollSelect…  
+    07:52:02.566 INFO   livekit.agents     starting      
+                                           worker        
+                                         {"version": 
+"1.3.11", "rtc-version": "1.0.23"}
+    07:52:02.569 INFO   livekit.agents     preloading    
+                                           plugins       
+                                         {"packages": 
+["livekit.plugins.silero", "livekit.plugins.openai", 
+"livekit.plugins.turn_detector", "av"]}
+    07:52:02.574 INFO   livekit.agents     starting      
+                                           inference     
+                                           executor      
+    07:52:05.377 INFO   livekit.agents     initializing  
+                                           process       
+                                         {"pid": 331833, 
+"inference": true}
+    07:54:22.814 INFO   livekit.agents     process       
+                                           initialized   
+                                         {"pid": 331833, 
+"inference": true, "elapsed_time": 137.43}
+    07:54:22.823 INFO   livekit.agents     HTTP server   
+                                           listening on  
+                                           :45263        
+    07:54:23.154 INFO   livekit.agents     registered    
+                                           worker        
+                                         {"agent_name": 
+"", "id": "AW_MYd9sFk68qe8", "url": 
+"wss://zenkai-6g8mqw70.livekit.cloud", "region": 
+"Singapore South East", "protocol": 16}
+[2026-01-17 07:57:34] 🚀 Starting backend services...
+[2026-01-17 07:57:34] 📦 Starting Docker containers (Whisper, Kokoro)...
+time="2026-01-17T07:57:35Z" level=warning msg="No services to build"
+ Container live-kit-whisper-1 Running 
+ Container live-kit-kokoro-1 Running 
+[2026-01-17 07:57:35] ✅ Docker containers started successfully
+[2026-01-17 07:57:35] 🔍 Checking Docker container status...
+NAME                 IMAGE                                      COMMAND                  SERVICE   CREATED             STATUS          PORTS
+live-kit-kokoro-1    ghcr.io/remsky/kokoro-fastapi-cpu:latest   "./entrypoint.sh"        kokoro    About an hour ago   Up 7 minutes    0.0.0.0:8888->8880/tcp, [::]:8888->8880/tcp
+live-kit-whisper-1   fedirz/faster-whisper-server:latest-cpu    "uv run uvicorn --fa…"   whisper   About an hour ago   Up 10 minutes   0.0.0.0:8080->8000/tcp, [::]:8080->8000/tcp
+[2026-01-17 07:57:35] ⏳ Waiting for local AI services to initialize...
+[2026-01-17 07:57:40] 🧪 Testing Whisper endpoint...
+[2026-01-17 07:57:40] ✅ Whisper is responding
+[2026-01-17 07:57:40] 🧪 Testing Kokoro endpoint...
+[2026-01-17 07:57:40] ✅ Kokoro is responding
+[2026-01-17 07:57:40] 🤖 Starting LiveKit Python agent...
+[2026-01-17 07:57:40] 📂 Activating virtual environment...
+[2026-01-17 07:57:40] 🔧 Environment variables loaded from .env.local
+[2026-01-17 07:57:40] 🎯 Starting agent in development mode...
+    07:57:44.883 DEBUG  asyncio            Using selector: EpollSelector  
+    07:57:44.887 DEV    livekit.agents     Watching /home/ubuntu/develop/live-kit/agent-starter-python/src  
+    07:57:47.881 DEBUG  asyncio            Using selector: EpollSelector  
+    07:57:47.888 INFO   livekit.agents     starting worker {"version": "1.3.11", "rtc-version": "1.0.23"}
+    07:57:47.890 INFO   livekit.agents     preloading plugins  
+                                         {"packages": ["livekit.plugins.silero", "livekit.plugins.openai", 
+"livekit.plugins.turn_detector", "av"]}
+    07:57:47.894 INFO   livekit.agents     starting inference executor  
+    07:57:50.040 INFO   livekit.agents     initializing process {"pid": 333911, "inference": true}
+    07:57:57.387 INFO   livekit.agents     process initialized {"pid": 333911, "inference": true, "elapsed_time": 7.34}
+    07:57:57.392 INFO   livekit.agents     HTTP server listening on :45271  
+    07:57:57.632 INFO   livekit.agents     registered worker  
+                                         {"agent_name": "", "id": "AW_pKLmZ7Jdomxg", "url": 
+"wss://zenkai-6g8mqw70.livekit.cloud", "region": "Singapore South East", "protocol": 16}
+    07:58:53.250 INFO   livekit.agents     shutting      
+                                           down worker   
+                                         {"id": 
+"AW_MYd9sFk68qe8"}
+    07:58:53.263 INFO   livekit.agents     process       
+                                           exiting       
+                                         {"reason": "", 
+"pid": 331833, "inference": true}
+    07:58:53.272 INFO   livekit.agents     shutting down worker {"id": "AW_pKLmZ7Jdomxg"}
+    07:58:53.279 INFO   livekit.agents     process exiting {"reason": "", "pid": 333911, "inference": true}
+    07:58:58.092 DEBUG  asyncio            Using         
+                                           selector:     
+                                           EpollSelect…  
+    07:58:58.102 INFO   livekit.agents     starting      
+                                           worker        
+                                         {"version": 
+"1.3.11", "rtc-version": "1.0.23"}
+    07:58:58.104 INFO   livekit.agents     preloading    
+                                           plugins       
+                                         {"packages": 
+["livekit.plugins.silero", "livekit.plugins.openai", 
+"livekit.plugins.turn_detector", "av"]}
+    07:58:58.108 INFO   livekit.agents     starting      
+                                           inference     
+                                           executor      
+    07:58:58.169 DEBUG  asyncio            Using selector: EpollSelector  
+    07:58:58.179 INFO   livekit.agents     starting worker {"version": "1.3.11", "rtc-version": "1.0.23"}
+    07:58:58.181 INFO   livekit.agents     preloading plugins  
+                                         {"packages": ["livekit.plugins.silero", "livekit.plugins.openai", 
+"livekit.plugins.turn_detector", "av"]}
+    07:58:58.184 INFO   livekit.agents     starting inference executor  
+    07:58:59.977 INFO   livekit.agents     initializing process {"pid": 334625, "inference": true}
+    07:59:00.035 INFO   livekit.agents     initializing  
+                                           process       
+                                         {"pid": 334636, 
+"inference": true}
+    07:59:05.628 INFO   livekit.agents     process initialized {"pid": 334625, "inference": true, "elapsed_time": 5.64}
+    07:59:05.633 INFO   livekit.agents     HTTP server listening on :32997  
+    07:59:05.943 INFO   livekit.agents     registered worker  
+                                         {"agent_name": "", "id": "AW_wFvbGePn3wsu", "url": 
+"wss://zenkai-6g8mqw70.livekit.cloud", "region": "Singapore South East", "protocol": 16}
+    07:59:07.699 INFO   livekit.agents     process       
+                                           initialized   
+                                         {"pid": 334636, 
+"inference": true, "elapsed_time": 7.66}
+    07:59:07.704 INFO   livekit.agents     HTTP server   
+                                           listening on  
+                                           :32889        
+    07:59:07.946 INFO   livekit.agents     registered    
+                                           worker        
+                                         {"agent_name": 
+"", "id": "AW_Z5QBM23RKb7d", "url": 
+"wss://zenkai-6g8mqw70.livekit.cloud", "region": 
+"Singapore South East", "protocol": 16}
+[2026-01-17 08:08:11] 🚀 Starting backend services...
+[2026-01-17 08:08:11] 📦 Starting Docker containers (Whisper, Kokoro)...
+time="2026-01-17T08:08:12Z" level=warning msg="No services to build"
+ Container live-kit-kokoro-1 Running 
+ Container live-kit-whisper-1 Running 
+[2026-01-17 08:08:12] ✅ Docker containers started successfully
+[2026-01-17 08:08:12] 🔍 Checking Docker container status...
+NAME                 IMAGE                                      COMMAND                  SERVICE   CREATED             STATUS          PORTS
+live-kit-kokoro-1    ghcr.io/remsky/kokoro-fastapi-cpu:latest   "./entrypoint.sh"        kokoro    About an hour ago   Up 18 minutes   0.0.0.0:8888->8880/tcp, [::]:8888->8880/tcp
+live-kit-whisper-1   fedirz/faster-whisper-server:latest-cpu    "uv run uvicorn --fa…"   whisper   2 hours ago         Up 5 minutes    0.0.0.0:8080->8000/tcp, [::]:8080->8000/tcp
+[2026-01-17 08:08:12] ⏳ Waiting for local AI services to initialize...
+[2026-01-17 08:08:17] 🧪 Testing Whisper endpoint...
+[2026-01-17 08:08:17] ✅ Whisper is responding
+[2026-01-17 08:08:17] 🧪 Testing Kokoro endpoint...
+[2026-01-17 08:08:17] ✅ Kokoro is responding
+[2026-01-17 08:08:17] 🤖 Starting LiveKit Python agent...
+[2026-01-17 08:08:17] 📂 Activating virtual environment...
+[2026-01-17 08:08:17] 🔧 Environment variables loaded from .env.local
+[2026-01-17 08:08:17] 🎯 Starting agent in development mode...
+    08:08:21.644 DEBUG  asyncio            Using selector: EpollSelector  
+    08:08:21.648 DEV    livekit.agents     Watching /home/ubuntu/develop/live-kit/agent-starter-python/src  
+    08:08:24.554 DEBUG  asyncio            Using selector: EpollSelector  
+    08:08:24.564 INFO   livekit.agents     starting worker {"version": "1.3.11", "rtc-version": "1.0.23"}
+    08:08:24.565 INFO   livekit.agents     preloading plugins  
+                                         {"packages": ["livekit.plugins.silero", "livekit.plugins.openai", 
+"livekit.plugins.turn_detector", "av"]}
+    08:08:24.573 INFO   livekit.agents     starting inference executor  
+    08:08:26.684 INFO   livekit.agents     initializing process {"pid": 339435, "inference": true}
+    08:08:33.602 INFO   livekit.agents     process initialized {"pid": 339435, "inference": true, "elapsed_time": 6.92}
+    08:08:33.606 INFO   livekit.agents     HTTP server listening on :41423  
+    08:08:33.905 INFO   livekit.agents     registered worker  
+                                         {"agent_name": "", "id": "AW_denkXHRD7zFE", "url": "wss://zenkai-6g8mqw70.livekit.cloud", 
+"region": "Singapore South East", "protocol": 16}
+worker process is not responding.. worker crashed?
+worker process is not responding.. worker crashed?
+    08:15:12.456 ERROR  livekit.agents     process is unresponsive, killing process {"pid": 339435, "inference": true}
+    08:15:12.462 INFO   livekit.agents     killing process {"pid": 339435, "inference": true}
+    08:15:12.466 INFO   livekit.agents     sending SIGUSR1 signal to process {"pid": 339435, "inference": true}
+    08:15:12.430 ERROR  livekit.agents     process is unresponsive, killing process  
+                                         {"pid": 334636, "inference": true}
+    08:15:12.522 INFO   livekit.agents     killing process {"pid": 334636, "inference": true}
+    08:15:12.524 INFO   livekit.agents     sending SIGUSR1 signal to process  
+                                         {"pid": 334636, "inference": true}
