@@ -29,24 +29,46 @@ fi
 log "🔍 Checking Docker container status..."
 docker compose -f "$SCRIPT_DIR/docker-compose.yaml" ps >> "$LOG_FILE" 2>&1
 
-# 3. Wait for services to be ready
+# 3. Wait for services to be ready with retry logic
 log "⏳ Waiting for local AI services to initialize..."
-sleep 5
+max_retries=12
+retry_count=0
 
-# 4. Test Whisper endpoint
+# Test Whisper endpoint with retries
 log "🧪 Testing Whisper endpoint..."
-if curl -s http://localhost:8080/health > /dev/null 2>&1; then
-    log "✅ Whisper is responding"
-else
-    log "⚠️  Whisper health check failed (may still be starting)"
+while [ $retry_count -lt $max_retries ]; do
+    if curl -s http://localhost:8080/v1/models > /dev/null 2>&1; then
+        log "✅ Whisper API is ready"
+        break
+    else
+        retry_count=$((retry_count + 1))
+        log "⏳ Whisper not ready, retrying in 5 seconds... ($retry_count/$max_retries)"
+        sleep 5
+    fi
+done
+
+if [ $retry_count -eq $max_retries ]; then
+    log "❌ Whisper failed to start after 1 minute"
+    exit 1
 fi
 
-# 5. Test Kokoro endpoint
+# Test Kokoro endpoint with retries
+retry_count=0
 log "🧪 Testing Kokoro endpoint..."
-if curl -s http://localhost:8888/ > /dev/null 2>&1; then
-    log "✅ Kokoro is responding"
-else
-    log "⚠️  Kokoro health check failed (may still be starting)"
+while [ $retry_count -lt $max_retries ]; do
+    if curl -s http://localhost:8888/v1/models > /dev/null 2>&1; then
+        log "✅ Kokoro API is ready"
+        break
+    else
+        retry_count=$((retry_count + 1))
+        log "⏳ Kokoro not ready, retrying in 5 seconds... ($retry_count/$max_retries)"
+        sleep 5
+    fi
+done
+
+if [ $retry_count -eq $max_retries ]; then
+    log "❌ Kokoro failed to start after 1 minute"
+    exit 1
 fi
 
 # 6. Start the LiveKit Python Agent
@@ -62,5 +84,5 @@ log "📂 Activating virtual environment..."
 source .venv/bin/activate
 
 log "🔧 Environment variables loaded from .env.local"
-log "🎯 Starting agent in development mode..."
-python src/agent.py dev 2>&1 | tee -a "$LOG_FILE"
+log "🎯 Starting agent in development mode (noise cancellation disabled for stability)..."
+python -m src.agent dev 2>&1 | tee -a "$LOG_FILE"

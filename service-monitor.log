@@ -1,0 +1,24 @@
+[2026-01-17 08:31:14] 🔍 Starting service health check...
+[2026-01-17 08:31:14] 📦 Checking Docker containers...
+NAME                 IMAGE                                      COMMAND                  SERVICE   CREATED       STATUS              PORTS
+live-kit-kokoro-1    ghcr.io/remsky/kokoro-fastapi-cpu:latest   "./entrypoint.sh"        kokoro    2 hours ago   Up 2 minutes        0.0.0.0:8888->8880/tcp, [::]:8888->8880/tcp
+live-kit-whisper-1   fedirz/faster-whisper-server:latest-cpu    "uv run uvicorn --fa…"   whisper   2 hours ago   Up About a minute   0.0.0.0:8080->8000/tcp, [::]:8080->8000/tcp
+[2026-01-17 08:31:16] ✅ Whisper API: HEALTHY
+[2026-01-17 08:31:16] ✅ Kokoro API: HEALTHY
+[2026-01-17 08:31:16] 💾 System resources:
+Memory: Mem:            15Gi        14Gi       409Mi        51Mi       1.2Gi       1.2Gi
+CPU: 42.3% used
+Disk: 84%
+[2026-01-17 08:31:16] 🎉 All services healthy
+[2026-01-17 08:36:25] 🔍 Starting service health check...
+[2026-01-17 08:36:25] 📦 Checking Docker containers...
+NAME                 IMAGE                                      COMMAND                  SERVICE   CREATED       STATUS         PORTS
+live-kit-kokoro-1    ghcr.io/remsky/kokoro-fastapi-cpu:latest   "./entrypoint.sh"        kokoro    2 hours ago   Up 7 minutes   0.0.0.0:8888->8880/tcp, [::]:8888->8880/tcp
+live-kit-whisper-1   fedirz/faster-whisper-server:latest-cpu    "uv run uvicorn --fa…"   whisper   2 hours ago   Up 2 minutes   0.0.0.0:8080->8000/tcp, [::]:8080->8000/tcp
+[2026-01-17 08:36:26] ✅ Whisper API: HEALTHY
+[2026-01-17 08:36:26] ✅ Kokoro API: HEALTHY
+[2026-01-17 08:36:26] 💾 System resources:
+Memory: Mem:            15Gi        13Gi       1.1Gi        41Mi       1.4Gi       2.1Gi
+CPU: 20.0% used
+Disk: 84%
+[2026-01-17 08:36:27] 🎉 All services healthy
