@@ -71,6 +71,25 @@ if [ $retry_count -eq $max_retries ]; then
     exit 1
 fi
 
+# Test LiveKit endpoint with retries
+retry_count=0
+log "🧪 Testing LiveKit endpoint..."
+while [ $retry_count -lt $max_retries ]; do
+    if curl -s http://localhost:7880 > /dev/null 2>&1; then
+        log "✅ LiveKit server is ready"
+        break
+    else
+        retry_count=$((retry_count + 1))
+        log "⏳ LiveKit not ready, retrying in 5 seconds... ($retry_count/$max_retries)"
+        sleep 5
+    fi
+done
+
+if [ $retry_count -eq $max_retries ]; then
+    log "❌ LiveKit failed to start after 1 minute"
+    exit 1
+fi
+
 # 6. Start the LiveKit Python Agent
 log "🤖 Starting LiveKit Python agent..."
 cd "$SCRIPT_DIR/agent-starter-python"
