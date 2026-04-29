@@ -1,0 +1,9 @@
+{
+  "name": "@zenkai/livekit",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "bash start-backend.sh",
+    "start": "bash start-backend.sh"
+  }
+}

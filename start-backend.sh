@@ -2,6 +2,13 @@
 
 # start-backend.sh
 # This script starts the local AI services (Docker) and the LiveKit Python agent.
+#
+# Code changes:
+#   - Interview API (api_server.py): set API_RELOAD=1 below — uvicorn auto-reloads on save.
+#     Without reload, you must stop this script (Ctrl+C) and run again to pick up API edits.
+#   - LiveKit agent (src.agent): started in background — no auto-reload. After editing agent
+#     code, run: pkill -f "src.agent dev"  then re-run this script, or restart only the agent.
+#   - If port 8001 is already in use, stop the old api_server first.
 
 set -e  # Exit on error
 
@@ -75,7 +82,7 @@ fi
 retry_count=0
 log "🧪 Testing LiveKit endpoint..."
 while [ $retry_count -lt $max_retries ]; do
-    if curl -s http://localhost:7880 > /dev/null 2>&1; then
+    if curl -s --connect-timeout 3 "http://127.0.0.1:7880/" > /dev/null 2>&1; then
         log "✅ LiveKit server is ready"
         break
     else
@@ -86,7 +93,8 @@ while [ $retry_count -lt $max_retries ]; do
 done
 
 if [ $retry_count -eq $max_retries ]; then
-    log "❌ LiveKit failed to start after 1 minute"
+    log "❌ LiveKit failed to start after 1 minute (nothing answered on http://127.0.0.1:7880/)"
+    log "   See docker logs for the livekit container — common fixes: API secret >=32 chars in livekit.yaml; rtc.node_ip (not external_ip) for newer livekit-server"
     exit 1
 fi
 
@@ -102,6 +110,24 @@ fi
 log "📂 Activating virtual environment..."
 source .venv/bin/activate
 
-log "🔧 Environment variables loaded from .env.local"
+log "🔧 Agent reads .env.local via Python (see api_server / agent entrypoint)"
 log "🎯 Starting agent in development mode (noise cancellation disabled for stability)..."
-python -m src.agent dev 2>&1 | tee -a "$LOG_FILE"
+python -m src.agent dev 2>&1 | tee -a "$LOG_FILE" &
+log "   Agent running in background (stop: pkill -f \"src.agent dev\")"
+
+# 7. Start the FastAPI Interview API Server
+log "📡 Starting FastAPI Interview API Server..."
+cd "$SCRIPT_DIR/agent-starter-python"
+
+if [ ! -d ".venv" ]; then
+    log "❌ Virtual environment not found at $SCRIPT_DIR/agent-starter-python/.venv"
+    exit 1
+fi
+
+log "📂 Activating virtual environment..."
+source .venv/bin/activate
+
+log "🚀 Starting API server (production mode: reload disabled)..."
+export API_RELOAD=0
+# Honor API_PORT from .env.local (loaded inside Python); default in api_server is 8000 if unset
+python api_server.py 2>&1 | tee -a "$LOG_FILE"

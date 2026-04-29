@@ -20,3 +20,16 @@ services:
     network_mode: host
     volumes:
       - ./livekit.yaml:/etc/livekit.yaml
+
+  livekit-proxy:
+    image: caddy:2
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:

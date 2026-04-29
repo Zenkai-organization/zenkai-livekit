@@ -5,8 +5,11 @@ rtc:
   tcp_port: 7881
   port_range_start: 50000
   port_range_end: 60000
-  use_external_ip: false
+  # WAN: ICE host candidates must be this VM’s public IPv4 (same as cloudflared origin / LiveKit STUN).
+  node_ip: "1.54.180.73"
+  use_external_ip: true
 keys:
-  devkey: "secret"
+  # API secret must be ≥32 characters (livekit-server validates on startup).
+  devkey: "zenkai_local_dev_livekit_secret_key_must_be_32_chars"
 logging:
   level: info
