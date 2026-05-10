@@ -1,0 +1,15 @@
+INFO:api_server:LiveKit interview API: serverUrl for browsers=wss://livekit.zenkai.com.vn (internal LIVEKIT_URL=ws://localhost:7880) | JWT issuer (api key)=devkey
+INFO:api_server:If the browser reports invalid token / go-jose cryptographic errors, the LiveKit process serving that serverUrl must define keys[devkey] with the same secret as LIVEKIT_API_SECRET in this service (see livekit.yaml).
+INFO:api_server:Starting FastAPI server on 0.0.0.0:8001 (reload=False)
+INFO:     Started server process [329232]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+/home/ubuntu/develop/live-kit/agent-starter-python/api_server.py:166: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  return {"status": "ok", "timestamp": datetime.utcnow().isoformat()}
+INFO:     127.0.0.1:34688 - "GET /health HTTP/1.1" 200 OK
+INFO:     5.61.209.107:48480 - "GET /SDK/webLanguage HTTP/1.1" 404 Not Found
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [329232]

@@ -111,7 +111,9 @@ log "📂 Activating virtual environment..."
 source .venv/bin/activate
 
 log "🔧 Agent reads .env.local via Python (see api_server / agent entrypoint)"
+export LIVEKIT_AGENT_NAME="${LIVEKIT_AGENT_NAME:-mock-interview-agent}"
 log "🎯 Starting agent in development mode (noise cancellation disabled for stability)..."
+log "   LIVEKIT_AGENT_NAME=${LIVEKIT_AGENT_NAME} (must match JWT RoomAgentDispatch)"
 python -m src.agent dev 2>&1 | tee -a "$LOG_FILE" &
 log "   Agent running in background (stop: pkill -f \"src.agent dev\")"
 
