@@ -2,3 +2,9 @@ https://192.168.1.127:7443 {
   tls internal
   reverse_proxy 127.0.0.1:7880
 }
+
+https://livekit.zenkai.com.vn {
+  tls internal
+  reverse_proxy 127.0.0.1:7880
+}
+

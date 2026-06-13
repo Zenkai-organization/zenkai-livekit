@@ -5,9 +5,15 @@ rtc:
   tcp_port: 7881
   port_range_start: 50000
   port_range_end: 60000
-  # WAN: ICE host candidates must be this VM’s public IPv4 (same as cloudflared origin / LiveKit STUN).
-  node_ip: "1.54.180.73"
+  # Dynamic WAN: let LiveKit discover the current external IP at startup.
   use_external_ip: true
+turn:
+  enabled: true
+  domain: turn.zenkai.com.vn
+  udp_port: 3478
+  # TURN relay ports must be reachable from browsers over UDP.
+  relay_range_start: 40000
+  relay_range_end: 49999
 keys:
   # API secret must be ≥32 characters (livekit-server validates on startup).
   devkey: "zenkai_local_dev_livekit_secret_key_must_be_32_chars"
